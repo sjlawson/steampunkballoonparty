@@ -3,26 +3,28 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 
-__author__="samuel lawson"
-__date__ ="$Mar 23, 2011 12:04:52 AM$"
+__author__ = "samuel lawson"
+__date__ = "$Mar 23, 2011 12:04:52 AM$"
 
 import pygame
 import collisionObjects
+
 pygame.init()
 
 screen = pygame.display.set_mode((1200, 900))
+
 
 def main():
     pygame.display.set_caption("Using the collision library")
 
     background = pygame.Surface(screen.get_size())
-    background.fill((100,100,255))
-    screen.blit(background, (0,0))
+    background.fill((100, 100, 255))
+    screen.blit(background, (0, 0))
 
     flyer = collisionObjects.Flyer()
     balloons = []
     for i in range(30):
-        balloon = collisionObjects.Balloon((240,0,0), screen)
+        balloon = collisionObjects.Balloon((240, 0, 0), screen)
         balloons.append(balloon)
 
     flyerSprite = pygame.sprite.Group(flyer)
@@ -30,7 +32,7 @@ def main():
 
     popNoise = pygame.mixer.Sound("pop.ogg")
 
-    #hide mouse
+    # hide mouse
     pygame.mouse.set_visible(False)
     clock = pygame.time.Clock()
     keepGoing = True
@@ -56,7 +58,6 @@ def main():
         flyerSprite.draw(screen)
 
         pygame.display.flip()
-
 
     pygame.mouse.set_visible(True)
 

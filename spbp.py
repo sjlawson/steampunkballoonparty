@@ -1,5 +1,5 @@
-__author__="Samuel Lawson"
-__date__ ="$20 December 2011 12:04:52 AM$"
+__author__ = "Samuel Lawson"
+__date__ = "$20 December 2011 12:04:52 AM$"
 import time
 import pygame
 import random
@@ -9,12 +9,13 @@ pygame.init()
 
 screen = pygame.display.set_mode((1360, 750))
 
+
 def main():
     pygame.display.set_caption("Steampunk Balloon Party")
 
     background = pygame.Surface(screen.get_size())
-    background.fill((100,100,255))
-    screen.blit(background, (0,0))
+    background.fill((100, 100, 255))
+    screen.blit(background, (0, 0))
 
     flyer = collisionObjects.Flyer()
     balloons = []
@@ -22,7 +23,7 @@ def main():
         red = random.randrange(0, 255)
         green = random.randrange(0, 255)
         blue = random.randrange(0, 255)
-        balloon = collisionObjects.Balloon((red,green,blue), screen)
+        balloon = collisionObjects.Balloon((red, green, blue), screen)
         balloons.append(balloon)
 
     flyerSprite = pygame.sprite.Group(flyer)
@@ -49,12 +50,12 @@ def main():
                     keepGoing = False
                     startOver = True
 
-        #if random.randrange(0,3) == 1:
+        # if random.randrange(0,3) == 1:
         #    collisionResult = pygame.sprite.spritecollide(flyer, balloonGroup, True)
-        #else:
-#        collisionResult = pygame.sprite.spritecollide(flyer, balloonGroup, False)
-#        if collisionResult:
-#            popNoise.play()
+        # else:
+        #        collisionResult = pygame.sprite.spritecollide(flyer, balloonGroup, False)
+        #        if collisionResult:
+        #            popNoise.play()
 
         balloonGroup.clear(screen, background)
         flyerSprite.clear(screen, background)
@@ -67,7 +68,6 @@ def main():
 
         pygame.display.flip()
         time.sleep(0.01)
-
 
     if startOver:
         balloonGroup.clear(screen, background)
