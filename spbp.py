@@ -1,12 +1,10 @@
-#! /usr/bin/python
-
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 __author__="Samuel Lawson"
 __date__ ="$20 December 2011 12:04:52 AM$"
+import time
+import pygame
+import random
+import collisionObjects
 
-import pygame, collisionObjects, random
 pygame.init()
 
 screen = pygame.display.set_mode((1360, 750))
@@ -30,9 +28,9 @@ def main():
     flyerSprite = pygame.sprite.Group(flyer)
     balloonGroup = pygame.sprite.Group(balloons)
 
-#    popNoise = pygame.mixer.Sound("pop.ogg")
+    # popNoise = pygame.mixer.Sound("pop.ogg")
 
-    #hide mouse
+    # hide mouse
     pygame.mouse.set_visible(False)
     clock = pygame.time.Clock()
     keepGoing = True
@@ -50,11 +48,11 @@ def main():
                 if event.key == pygame.K_b:
                     keepGoing = False
                     startOver = True
-                    
+
         #if random.randrange(0,3) == 1:
         #    collisionResult = pygame.sprite.spritecollide(flyer, balloonGroup, True)
         #else:
-#        collisionResult = pygame.sprite.spritecollide(flyer, balloonGroup, False)    
+#        collisionResult = pygame.sprite.spritecollide(flyer, balloonGroup, False)
 #        if collisionResult:
 #            popNoise.play()
 
@@ -68,6 +66,8 @@ def main():
         flyerSprite.draw(screen)
 
         pygame.display.flip()
+        time.sleep(0.01)
+
 
     if startOver:
         balloonGroup.clear(screen, background)
