@@ -8,7 +8,7 @@ import sys
 import os
 import glob, shutil
 sys.argv.append("py2exe")
- 
+
 VERSION = '1.0'
 AUTHOR_NAME = 'Samuel Lawson'
 AUTHOR_EMAIL = 'samueljlawson@gmail.com'
@@ -17,27 +17,28 @@ PRODUCT_NAME = "Balloon Steamer"
 SCRIPT_MAIN = 'spbp.py'
 VERSIONSTRING = PRODUCT_NAME + " ALPHA " + VERSION
 ICONFILE = 'icon.ico'
- 
+
 # Remove the build tree on exit automatically
 REMOVE_BUILD_ON_EXIT = True
 PYGAMEDIR = os.path.split(pygame.base.__file__)[0]
- 
+
 SDL_DLLS = glob.glob(os.path.join(PYGAMEDIR,'*.dll'))
- 
-if os.path.exists('dist/'): shutil.rmtree('dist/')
- 
+
+if os.path.exists('dist/'):
+     shutil.rmtree('dist/')
+
 extra_files = [    ("data",glob.glob(os.path.join('data','*.dat'))),
                    ("gfx",glob.glob(os.path.join('gfx','*.jpg'))),
                    ("gfx",glob.glob(os.path.join('gfx','*.png'))),
                    ("fonts",glob.glob(os.path.join('fonts','*.ttf'))),
                    ("music",glob.glob(os.path.join('music','*.ogg'))),
                    ("snd",glob.glob(os.path.join('snd','*.wav')))]
- 
+
 # List of all modules to automatically exclude from distribution build
 # This gets rid of extra modules that aren't necessary for proper functioning of app
 # You should only put things in this list if you know exactly what you DON'T need
 # This has the benefit of drastically reducing the size of your dist
- 
+
 MODULE_EXCLUDES =[
 'email',
 'AppKit',
@@ -71,9 +72,9 @@ MODULE_EXCLUDES =[
 'base64',
 'compiler',
 'pydoc']
- 
+
 INCLUDE_STUFF = ['encodings',"encodings.latin_1",]
- 
+
 setup(windows=[
              {'script': SCRIPT_MAIN,
                'other_resources': [(u"VERSIONTAG",1,VERSIONSTRING)],
@@ -93,19 +94,19 @@ setup(windows=[
           author = AUTHOR_NAME,
           author_email = AUTHOR_EMAIL,
           url = AUTHOR_URL)
- 
+
 # Create the /save folder for inclusion with the installer
 # shutil.copytree('save','dist/save')
- 
-if os.path.exists('dist/tcl'): shutil.rmtree('dist/tcl') 
- 
+
+if os.path.exists('dist/tcl'): shutil.rmtree('dist/tcl')
+
 # Remove the build tree
 if REMOVE_BUILD_ON_EXIT:
      shutil.rmtree('build/')
- 
+
 if os.path.exists('dist/tcl84.dll'): os.unlink('dist/tcl84.dll')
 if os.path.exists('dist/tk84.dll'): os.unlink('dist/tk84.dll')
- 
+
 for f in SDL_DLLS:
     fname = os.path.basename(f)
     try:

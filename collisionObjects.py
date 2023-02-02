@@ -1,6 +1,3 @@
-# To change this template, choose Tools | Templates
-# and open the template in the editor.
-
 __author__="samuel"
 __date__ ="$Mar 22, 2011 5:57:15 PM$"
 
@@ -25,25 +22,25 @@ class Balloon(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = random.randrange(0, screen.get_width())
         self.rect.centery = random.randrange(0, screen.get_height())
-        
+
         self.x = self.rect.centerx
-        self.y = self.rect.centery 
+        self.y = self.rect.centery
         startDir = random.randrange(0,8)
-        
-        self.dirList = (0, 45, 90, 135, 180, 225, 270, 315)      
+
+        self.dirList = (0, 45, 90, 135, 180, 225, 270, 315)
         self.dir = self.dirList[startDir]
         self.speed = 2
         self.calcVector()
-        
+
         #self.dx = 0
         #self.dy = 0
-        
+
     def update(self, flyer):
         oldCenter = self.rect.center
         # self.image = pygame.transform.rotate(self.imageMaster, self.dir)
         self.checkBounds()
-        collisionResult = pygame.sprite.spritecollide(self, flyer, False)    
-        if collisionResult:            
+        collisionResult = pygame.sprite.spritecollide(self, flyer, False)
+        if collisionResult:
             #newDir = random.randrange(0,8)
             #self.dir = self.dirList[newDir]
             self.dx *= -1
@@ -56,14 +53,14 @@ class Balloon(pygame.sprite.Sprite):
                 self.kill()
             else:
                 self.hits += 1
-            
+
         self.rect.center = oldCenter
         self.x += self.dx
         self.y += self.dy
         self.rect.centerx = self.x
         self.rect.centery = self.y
-        
-    
+
+
     def calcVector(self):
         if self.dir == 0:
             self.dx = 1
@@ -90,11 +87,11 @@ class Balloon(pygame.sprite.Sprite):
             self.dx = .7
             self.dy = .7
         else:
-            print "something went wrong here"
-        
+            print("something went wrong here")
+
         self.dx *= self.speed
         self.dy *= self.speed
-        
+
     def checkBounds(self):
         screen = self.screen
         #if hit bottom
@@ -112,7 +109,7 @@ class Balloon(pygame.sprite.Sprite):
         #if hit left
         if self.x < 0:
             self.dx *= -1
-            
+
             #self.x = screen.get_width()
     def balloonBounce(self):
         newDir = random.randrange(0,8)
@@ -129,7 +126,7 @@ class Flyer(pygame.sprite.Sprite):
         self.image = self.image.convert_alpha()
         self.rect = self.image.get_rect()
         self.rect = self.rect.inflate(-5,-5)
-        
+
 
     def update(self):
         self.rect.center = pygame.mouse.get_pos()

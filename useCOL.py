@@ -3,10 +3,11 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
 
-__author__="samuel"
+__author__="samuel lawson"
 __date__ ="$Mar 23, 2011 12:04:52 AM$"
 
-import pygame, collisionObjects
+import pygame
+import collisionObjects
 pygame.init()
 
 screen = pygame.display.set_mode((1200, 900))
